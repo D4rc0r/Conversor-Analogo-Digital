@@ -18,12 +18,13 @@
   */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
+#include "ADC.h"
 #include "main.h"
 
+#include "ADconverter.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
-#include "ADC.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -70,8 +71,12 @@ static void MX_TIM2_Init(void);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
+	//in this section define variables to use in while (1)
+	uint16_t temperature;
 
-uint16_t temperature ;
+	//Here i call the function since ADconverter.c of library ADconverter.h
+	ADconverter();
+
 
   /* USER CODE END 1 */
 
@@ -96,7 +101,7 @@ uint16_t temperature ;
   MX_USART2_UART_Init();
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
-
+  // in this section define variables
   init_ADC(); //Begin SPI
 
   /* USER CODE END 2 */
@@ -105,8 +110,9 @@ uint16_t temperature ;
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  temperature = ReadTemp();
+      temperature = ReadTemp();
 	  HAL_Delay(1000);
+
 
     /* USER CODE END WHILE */
 
